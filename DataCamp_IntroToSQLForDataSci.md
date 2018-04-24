@@ -1,6 +1,6 @@
-# sql-learning
+# DataCamp: Intro to SQL for Data Science Notes
 
-The following notes were made while following *DataCamp*'s *Intro to SQL for Data Science* course:
+These following notes were made while following *DataCamp*'s *Intro to SQL for Data Science* course:
 https://campus.datacamp.com/courses/intro-to-sql-for-data-science/
 
 *Note*: must use single quotes when using postgreSQL
