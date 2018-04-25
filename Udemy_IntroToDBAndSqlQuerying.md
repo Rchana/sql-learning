@@ -171,13 +171,13 @@ SELECT * FROM MYEMPLOYEE
 SELECT * FROM MYSALARY 
 ```
 
-**Inner joins:** gives you the rows that are common between the 2 tables
+**Inner Joins:** gives you the rows that are common between the 2 tables
 ```
 SELECT A.FIRSTNAME, A.LASTNAME, B.SALARY
 FROM MYEMPLOYEE A INNER JOIN MYSALARY B ON A.EMPLOYEEID = B.EMPLOYEEID
 ```
 
-**Left outer joins:** takes every row from left table and common rows from right table (if unmatched, fill with null)
+**Left Outer Joins:** takes every row from left table and common rows from right table (if unmatched, fill with null)
 ```
 CREATE TABLE MYPHONE(EMPLOYEEID INT, PHONENUMBER INT)
 INSERT INTO MYPHONE VALUES(1, 12121212)
@@ -189,7 +189,7 @@ SELECT A.FIRSTNAME, A.LASTNAME, B.PHONENUMBER FROM MYEMPLOYEE A LEFT JOIN MYPHON
 ON A.EMPLOYEEID = B.EMPLOYEEID
 ```
 
-**Right outer join:** takes every row from right table and common rows from left table (if unmatched, fill with null)
+**Right Outer Join:** takes every row from right table and common rows from left table (if unmatched, fill with null)
 ```
 CREATE TABLE MYPARKING(EMPLOYEEID INT, PARKINGSPOT VARCHAR(20))
 
@@ -201,11 +201,15 @@ SELECT * FROM MYPARKING
 
 SELECT A.PARKINGSPOT, B.FIRSTNAME, B.LASTNAME FROM MYPARKING A RIGHT JOIN MYEMPLOYEE B ON A.EMPLOYEEID = B.EMPLOYEEID
 ```
-**Full outer join**: take data from both tables (unmatch data gets filled with null)
+**Full Outer Join**: take data from both tables (unmatch data gets filled with null)
 ```
 CREATE TABLE MYCUSTOMER(CUSTOMERID INT, CUSTOMERNAME VARCHAR(20))
+```
+*TRUNCATE*: is used to remove all records from a table
 
-TRUNCATE TABLE MYCUSTOMER
+`TRUNCATE TABLE MYCUSTOMER`
+
+```
 INSERT INTO MYCUSTOMER VALUES (1, 'JOHN')
 INSERT INTO MYCUSTOMER VALUES (3, 'BOB')
 
@@ -231,7 +235,7 @@ Or alternatively could write:
 ```
 SELECT * FROM MYCUSTOMER, MYSALARY
 ```
-#### Date manipulation
+## Date manipulation
 ```
 SELECT GETDATE()
 SELECT GETDATE()-2
@@ -258,4 +262,65 @@ Subtract prev date from todays date:
 ```
 SELECT DATEADD(dd, -(DATEPART(day, GETDATE())-1), GETDATE())
 ```
-#### Aggregate functions
+## Aggregate functions
+```
+SELECT AVG(SALARY) FROM MYSALARY
+SELECT COUNT(*) FROM MYSALARY
+SELECT SUM(SALARY) FROM MYSALARY
+SELECT MIN(SALARY) FROM MYSALARY
+SELECT MAX(SALARY) FROM MYSALARY
+```
+## String manipulation
+```
+PRINT CONCAT('STRING1', 'STRING 2')
+```
+```
+SELECT * FROM MYORDER
+SELECT ORDERNUMBER, ORDERNAME, CONCAT(ORDERNAME, '', ORDERNAME) AS CONCATENATEDTEXT
+FROM MYORDER
+```
+#### LEFT() give you the first X number of left-most characters
+`SELECT ORDERNUMBER, ORDERNAME, LEFT(ORDERNAME, 5) FROM MYORDER`
+#### RIGHT() give you the first X number of right-most characters
+`SELECT ORDERNUMBER, ORDERNAME, RIGHT(ORDERNAME, 5) FROM MYORDER`
+#### SUBSTRING() allows you to retrieve select ranges of a string
+`SELECT ORDERNUMBER, ORDERNAME, SUBSTRING(ORDERNAME, 3, 5) FROM MYORDER`
+#### LOWER() converts strings to lowercase
+`SELECT ORDERNUMBER, ORDERNAME, LOWER(ORDERNAME) FROM MYORDER`
+#### LEN() counts the length of a string
+`SELECT ORDERNUMBER, ORDERNAME, LEN(ORDERNAME) FROM MYORDER`
+
+#### Convert all entries in a column into sentence case:
+`SELECT ORDERNUMBER, ORDERNAME, CONCAT(UPPER(LEFT(ORDERNAME,1)), LOWER(SUBSTRING(ORDERNAME, 2, LEN(ORDERNAME)))) FROM MYORDER`
+
+#### LTRIM()/RTRIM() to remove spaces from left/right side of text
+```
+SELECT LTRIM('     MyText     ')
+SELECT RTRIM('     MyText     ')
+SELECT LTRIM(RTRIM('     MyText     '))
+```
+
+## Next steps:
+* Store procedures
+* Custom functions
+* Triggers
+* Views
+* Temporary Tables
+
+## Advanced concepts:
+* Database tuning
+* Query tuning
+* Indexing
+* CLR
+* Profilers
+* Loading large datasets
+
+## ETL: extract, transform, load
+* SSIS: transferring data between systems & cleaning it up
+
+## Reporting
+* SSRS
+* Tableau: high quality reports
+
+## Big data analysis
+* Hadoop
