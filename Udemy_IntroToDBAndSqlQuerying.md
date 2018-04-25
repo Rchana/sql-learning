@@ -1,4 +1,4 @@
-# Udemy: Intro to Databases and SQL Querying
+# Udemy: Intro to Databases & SQL Querying
 
 These following notes were made while following the following Udemy course:
 https://www.udemy.com/introduction-to-databases-and-sql-querying/
